@@ -17,8 +17,7 @@ sudo mv $SET_TMP_PATH/sshd_config /etc/ssh/
 sudo systemctl enable ssh
 
 # CODE-SERVER
-wget "https://github.com/coder/code-server/releases/download/v4.4.0/code-server_4.4.0_arm64.deb" -P $SET_TMP_PATH
-sudo dpkg -i $SET_TMP_PATH/code-*
+curl -fsSL https://code-server.dev/install.sh | sh
 if [ -d "$HOME/.config/code-server/" ];then
 	touch "$HOME/.config/code-server/config.yaml"
 else
