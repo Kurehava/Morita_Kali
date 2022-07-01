@@ -90,7 +90,7 @@ code-server-newport(){
 alias server-port="code-server-newport"
 server(){
     echo -e "\e[93mCODE-SERVER CONTROL COMMAND LINE\e[0m"
-    echo -e "\e[93mPowered by Kureha Belonging to KanagawaUniversity MoritaLab\e[0m"
+    echo -e "\e[93mPowered by SHO Belonging to KanagawaUniversity MoritaLab\e[0m"
     echo "##############################################################"
     echo "Usage:"
     echo -e "\e[92mserver-start\e[0m   - start code-server manual."
