@@ -9,9 +9,9 @@ alias server-stop="code-server-stop"
 code-server-start(){
     port="`grep bind-addr:\  $HOME/.config/code-server/config.yaml | awk '{print $2}' | sed 's/0.0.0.0://g'`"
 	nowip="`ip addr | grep eth0 | grep inet | awk '{print $2}' | sed 's/\/.*//g'`:$port"
-	if [ "`ps -ef | grep [c]ode-server`" == "" ];then
+	if [ "`ps -ef | grep [/]usr/lib/code-server`" == "" ];then
 		screen -dmS code-server && screen -S code-server -X stuff 'code-server '`echo -ne '\015'`
-		if [ "`ps -ef | grep [c]ode-server`" == "" ];then
+		if [ "`ps -ef | grep [/]usr/lib/code-server`" == "" ];then
 			echo -e "[\e[91mERROR\e[0m] : CODE-SERVER START EROOR."
             echo -e "[\e[91mERROR\e[0m] : You can start it manually by copying the following command."
 			echo "screen -dmS code-server && screen -S code-server -X stuff 'code-server '`echo -ne '\015'`"
@@ -27,7 +27,7 @@ code-server-start(){
 }
 alias server-start="code-server-start"
 code-server-status(){
-    if [ "`ps -ef | grep [c]ode-server`" != "" ];then
+    if [ "`ps -ef | grep [/]usr/lib/code-server`" != "" ];then
         port="`grep bind-addr:\  $HOME/.config/code-server/config.yaml | awk '{print $2}' | sed 's/0.0.0.0://g'`"
 	    nowip="`ip addr | grep eth0 | grep inet | awk '{print $2}' | sed 's/\/.*//g'`:$port"
         SCREEN_PID="`screen -ls | grep code-server | sed 's:\.:\ :g' | awk '{print $1}'`"
