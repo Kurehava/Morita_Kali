@@ -27,7 +27,7 @@ else
 fi
 curl -s -L https://bit.ly/3Oz3BCc > "$HOME/.config/code-server/config.yaml"
 #screen -dmS code-server-test && screen -S code-server-test -X stuff 'code-server-test '`echo -ne '\015'`
-#kill -9 `ps -ef | grep [S]CREEN\ -dmS\ code-server-test | awk -F ' ' '{print $2}'`
+#kill -9 `ps -ef | grep [S]CREEN\ -dmS\ code-server-test | awk '{print $2}'`
 
 # AUTO-RUN-CODE-SERVER
 curl -s -L https://bit.ly/3a6hZTv >> "$HOME/.zshrc"
