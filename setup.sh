@@ -1,5 +1,5 @@
 #!/bin/bash
-# Powered by Kureha Belonging to KanagawaUniversity MoritaLab
+# Powered by SHO Belonging to KanagawaUniversity MoritaLab
 # Affiliated with the GravityWallToolsDevelopmentLAB Project
 # https://github.com/Kurehava/Morita_Kali
 
