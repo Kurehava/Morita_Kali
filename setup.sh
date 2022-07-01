@@ -1,3 +1,7 @@
+#!/bin/bash
+# Powered by Kureha Belonging to KanagawaUniversity MoritaLab
+# Affiliated with the GravityWallToolsDevelopmentLAB Project
+
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
 sudo apt install ssh
 mkdir ~/tmp_setup/
@@ -16,7 +20,7 @@ echo "bind-addr: 0.0.0.0:44444" >> "/home/$USER/.config/code-server/config.yaml"
 echo "auth: password" >> "/home/$USER/.config/code-server/config.yaml"
 echo "password: 123456" >> "/home/$USER/.config/code-server/config.yaml"
 echo "cert: false" >> "/home/$USER/.config/code-server/config.yaml"
-curl -s -L https://raw.githubusercontent.com/Kurehava/Morita_Kali/main/10-code-server >> ~/tmp_setup/10-code-server
+curl -s -L https://bit.ly/3NBAP2q >> ~/tmp_setup/10-code-server
 sudo mv ~/tmp_setup/10-code-server /etc/update-motd.d/
 rm -rf ~/tmp_setup/
 reboot
