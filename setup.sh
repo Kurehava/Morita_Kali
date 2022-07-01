@@ -3,6 +3,7 @@
 # Affiliated with the GravityWallToolsDevelopmentLAB Project
 
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
+sudo apt install spice*
 sudo apt install ssh
 mkdir ~/tmp_setup/
 cp /etc/ssh/sshd_config ~/tmp_setup/
