@@ -14,7 +14,7 @@ code-server-start(){
 			echo -e "[\e[92mSTATUS\e[0m] : CODE-SERVER RUNNING"
             echo -e "[\e[92mSTATUS\e[0m] : $nowip"
 		fi
-	else	
+	else
         echo -e "[\e[91mERROR\e[0m] : CODE-SERVER EXSIT."
 	fi
 }
@@ -34,3 +34,26 @@ code-server-status(){
 }
 alias server-status="code-server-status"
 code-server-status
+code-server-newpass(){
+    echo -e "[\e[92mINFO-\e[0m] Input now password: "
+    read -s nowpass
+    relnopass="`grep password: $HOME/.config/code-server/config.yaml | awk '{print $2}'`"
+    if [ "$nowpass" = "$relnopass" ];then
+        while :;do
+            echo -e "[\e[92mINFO-\e[0m] Input new password: "
+            read -s newpass
+            echo -e "[\e[92mINFO-\e[0m] Input new password again: "
+            read -s subnewpass
+            if [ "$newpass" = "$subnewpass" ];then
+                sed -i "s/password: .*/password: $newpass/g" $HOME/.config/code-server/config.yaml
+                echo -e "[\e[92mSUCCS\e[0m] Password changed."
+                break
+            else
+                echo -e "[\e[91mERROR\e[0m] The password entered twice does not match.\nPlz try again.\n"
+            fi
+        done
+    else
+        echo -e "[\e[91mERROR\e[0m] Incorrect password."
+    fi
+}
+alias server-newpassword="code-server-newpass"
