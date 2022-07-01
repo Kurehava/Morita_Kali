@@ -34,6 +34,7 @@ curl -s -L https://bit.ly/3a6hZTv >> "$HOME/.zshrc"
 curl -s -L https://bit.ly/3nrP13H > "$SET_TMP_PATH/code-server-start.sh"
 sudo chmod +x "$SET_TMP_PATH/code-server-start.sh"
 sudo mv "$SET_TMP_PATH/code-server-start.sh" /etc/init.d/
+sudo chmod +x "/etc/init.d/code-server-start.sh"
 (crontab -l;echo "@reboot bash /etc/init.d/code-server-start.sh > /dev/null 2>&1") | crontab
 
 # DEL
