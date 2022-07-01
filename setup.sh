@@ -1,6 +1,7 @@
 #!/bin/bash
 # Powered by Kureha Belonging to KanagawaUniversity MoritaLab
 # Affiliated with the GravityWallToolsDevelopmentLAB Project
+# https://github.com/Kurehava/Morita_Kali
 
 # PATH DEFINE
 mkdir /home/$USER/tmp_setup/
