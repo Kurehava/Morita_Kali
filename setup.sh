@@ -2,26 +2,40 @@
 # Powered by Kureha Belonging to KanagawaUniversity MoritaLab
 # Affiliated with the GravityWallToolsDevelopmentLAB Project
 
+# PATH DEFINE
+mkdir /home/$USER/tmp_setup/
+export SET_TMP_PATH="/home/$USER/tmp_setup"
+
+# SSH
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
-sudo apt install spice*
 sudo apt install ssh
-mkdir ~/tmp_setup/
-cp /etc/ssh/sshd_config ~/tmp_setup/
-echo "Port 12345" >> ~/tmp_setup/sshd_config
-echo "PermitRootLogin yes" >> ~/tmp_setup/sshd_config
-sudo mv ~/tmp_setup/sshd_config /etc/ssh/
+cp /etc/ssh/sshd_config $SET_TMP_PATH
+echo "Port 12345" >> $SET_TMP_PATH/sshd_config
+echo "PermitRootLogin yes" >> $SET_TMP_PATH/sshd_config
+sudo mv $SET_TMP_PATH/sshd_config /etc/ssh/
 sudo systemctl enable ssh
-wget "https://github.com/coder/code-server/releases/download/v4.4.0/code-server_4.4.0_arm64.deb" -P ~/tmp_setup/
-sudo dpkg -i ~/tmp_setup/code-*
-screen -dmS code-server-test && screen -S code-server-test -X stuff 'code-server-test '`echo -ne '\015'`
-kill -9 `ps -ef | grep [S]CREEN\ -dmS\ code-server-test | awk -F ' ' '{print $2}'`
-rm -rf "/home/$USER/.config/code-server/config.yaml"
-touch "/home/$USER/.config/code-server/config.yaml"
-echo "bind-addr: 0.0.0.0:44444" >> "/home/$USER/.config/code-server/config.yaml"
-echo "auth: password" >> "/home/$USER/.config/code-server/config.yaml"
-echo "password: 123456" >> "/home/$USER/.config/code-server/config.yaml"
-echo "cert: false" >> "/home/$USER/.config/code-server/config.yaml"
-curl -s -L https://bit.ly/3NBAP2q >> ~/tmp_setup/10-code-server
-sudo mv ~/tmp_setup/10-code-server /etc/update-motd.d/
-rm -rf ~/tmp_setup/
+
+# CODE-SERVER
+wget "https://github.com/coder/code-server/releases/download/v4.4.0/code-server_4.4.0_arm64.deb" -P $SET_TMP_PATH
+sudo dpkg -i $SET_TMP_PATH/code-*
+if [ -d "$HOME/.config/code-server/" ];then
+	touch "$HOME/.config/code-server/config.yaml"
+else
+	mkdir -p $HOME/.config/code-server/
+	touch "$HOME/.config/code-server/config.yaml"
+fi
+curl -s -L https://bit.ly/3Oz3BCc > "$HOME/.config/code-server/config.yaml"
+#screen -dmS code-server-test && screen -S code-server-test -X stuff 'code-server-test '`echo -ne '\015'`
+#kill -9 `ps -ef | grep [S]CREEN\ -dmS\ code-server-test | awk -F ' ' '{print $2}'`
+
+# AUTO-RUN-CODE-SERVER
+curl -s -L https://bit.ly/3a6hZTv >> "$HOME/.zshrc"
+curl -s -L https://bit.ly/3nrP13H > "$SET_TMP_PATH/code-server-start.sh"
+sudo chmod +x "$SET_TMP_PATH/code-server-start.sh"
+sudo mv "$SET_TMP_PATH/code-server-start.sh" /etc/init.d/
+(crontab -l;echo "@reboot bash /etc/init.d/code-server-start.sh > /dev/null 2>&1") | crontab
+
+# DEL
+rm -rf $SET_TMP_PATH
+source $HOME/.zshrc
 reboot
