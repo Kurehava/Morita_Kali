@@ -3,13 +3,18 @@
 # Affiliated with the GravityWallToolsDevelopmentLAB Project
 # https://github.com/Kurehava/Morita_Kali
 
+# TOOLS
+sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
+sudo apt install ssh -y
+sudo apt install net-tools -y
+sudo apt install iproute2 -y
+sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
+
 # PATH DEFINE
 mkdir /home/$USER/tmp_setup/
 export SET_TMP_PATH="/home/$USER/tmp_setup"
 
 # SSH
-sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
-sudo apt install ssh -y
 cp /etc/ssh/sshd_config $SET_TMP_PATH
 echo "Port 12345" >> $SET_TMP_PATH/sshd_config
 echo "PermitRootLogin yes" >> $SET_TMP_PATH/sshd_config
