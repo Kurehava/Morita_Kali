@@ -9,7 +9,7 @@ export SET_TMP_PATH="/home/$USER/tmp_setup"
 
 # SSH
 sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y
-sudo apt install ssh
+sudo apt install ssh -y
 cp /etc/ssh/sshd_config $SET_TMP_PATH
 echo "Port 12345" >> $SET_TMP_PATH/sshd_config
 echo "PermitRootLogin yes" >> $SET_TMP_PATH/sshd_config
